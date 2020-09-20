@@ -47,42 +47,39 @@ class Stack<Element>{
         }
     }
 }
-class Test{
-    var myStack = Stack<Int>()
+
+class Node{
     let id = Int.random(in: 0...1000)
     var description: String{
-        return "This is a stack test for myStack class with an ID \(id)"
-    }
-    
-    func testStack() -> Void{
-        for number in 0...10{
-            myStack.push(number)
-            print("\(number) is pushed to the stack ..")
-            do{
-                if number%4 == 0{
-                    try print("The top element is \(myStack.peek()), is empty says \(myStack.isEmpty())")
-                    print("Let's do a pop ..")
-                    let value = try myStack.pop()
-                    print("The popped value is \(value) and the current peek is \(try myStack.peek())")
-                }
-            }
-            catch{
-                print("The stack is Empty ...")
-            }
-        }
-        print("\nWe'll pop all the element from the stack ...")
-        while !myStack.isEmpty(){
-            do{
-                try myStack.pop()
-            }
-            catch{
-                print("The stack is Empty ..")
-            }
-        }
-        print("is Empty says finally \(myStack.isEmpty())")
-        print("\nHello, World from Rahaf!")
+        return "Node ID is \(id)"
     }
 }
-var test = Test()
-print(test.description)
-test.testStack()
+var myStack = Stack<Node>()
+for number in 0...10{
+    let node = Node()
+    myStack.push(node)
+    print("\(node.description) is pushed to the stack ..")
+    do{
+        if number%4 == 0{
+            try print("The top element is \(myStack.peek().description), is empty says \(myStack.isEmpty())")
+            print("Let's do a pop ..")
+            let value = try myStack.pop()
+            print("The popped value is \(value.description) and the current peek is \(try myStack.peek().description)")
+        }
+    }
+    catch{
+        print("The stack is Empty ...")
+    }
+}
+print("\nWe'll pop all the element from the stack ...")
+while !myStack.isEmpty(){
+    do{
+        try myStack.pop()
+    }
+    catch{
+        print("The stack is Empty ..")
+    }
+}
+print("is Empty says finally \(myStack.isEmpty())")
+print("\nHello, World from Rahaf!")
+
