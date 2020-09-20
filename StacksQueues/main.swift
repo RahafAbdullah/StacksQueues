@@ -44,6 +44,33 @@ while !myStack.isEmpty(){
     }
 }
 print("is Empty says finally \(myStack.isEmpty())")
-
+print("\nTest Queue class ...\n")
+var myQueue = Queue<Node>()
+for number in 0...10{
+    let node = Node()
+    myQueue.add(node)
+    print("\(node.description) is pushed to the queue ..")
+    do{
+        if number%4 == 0{
+            try print("The top element is \(myQueue.peek().description), is empty says \(myQueue.isEmpty())")
+            print("Let's do a remove ..")
+            let value = try myQueue.remove()
+            print("The removed value is \(value.description) and the current peek is \(try myQueue.peek().description)")
+        }
+    }
+    catch{
+        print("The Queue is Empty ...")
+    }
+}
+print("\nWe'll remove all the element from the Queue ...")
+while !myQueue.isEmpty(){
+    do{
+        try myQueue.remove()
+    }
+    catch{
+        print("The Queue is Empty ..")
+    }
+}
+print("is Empty says finally \(myStack.isEmpty())")
 
 
