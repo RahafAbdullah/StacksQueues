@@ -8,52 +8,15 @@
 
 import Foundation
 
-enum StackError: Error{
-    case EmptyStack
-}
-
-class Stack<Element>{
-    var stack: [Element] = []
-    
-    func pop() throws -> Element {
-        if !isEmpty(){
-            let lastElement = stack[stack.count - 1]
-            stack.remove(at: stack.count - 1)
-            return lastElement
-        }
-        else{
-            throw StackError.EmptyStack
-        }
-    }
-    
-    func push(_ element: Element) -> Void{
-        stack.append(element)
-    }
-    
-    func peek() throws -> Element {
-        let indexOfLast = stack.count - 1
-        if indexOfLast < 0{
-            throw StackError.EmptyStack
-        }
-        return stack[indexOfLast]
-    }
-    
-    func isEmpty() -> Bool{
-        if stack.count == 0{
-            return true
-        }
-        else{
-            return false
-        }
-    }
-}
 
 class Node{
     let id = Int.random(in: 0...1000)
     var description: String{
-        return "Node ID is \(id)"
+        return "Node of ID \(id)"
     }
 }
+print("\nHello, World from Rahaf!\n")
+print("Test stack class ...\n")
 var myStack = Stack<Node>()
 for number in 0...10{
     let node = Node()
@@ -81,5 +44,33 @@ while !myStack.isEmpty(){
     }
 }
 print("is Empty says finally \(myStack.isEmpty())")
-print("\nHello, World from Rahaf!")
+print("\nTest Queue class ...\n")
+var myQueue = Queue<Node>()
+for number in 0...10{
+    let node = Node()
+    myQueue.add(node)
+    print("\(node.description) is pushed to the queue ..")
+    do{
+        if number%4 == 0{
+            try print("The top element is \(myQueue.peek().description), is empty says \(myQueue.isEmpty())")
+            print("Let's do a remove ..")
+            let value = try myQueue.remove()
+            print("The removed value is \(value.description) and the current peek is \(try myQueue.peek().description)")
+        }
+    }
+    catch{
+        print("The Queue is Empty ...")
+    }
+}
+print("\nWe'll remove all the element from the Queue ...")
+while !myQueue.isEmpty(){
+    do{
+        try myQueue.remove()
+    }
+    catch{
+        print("The Queue is Empty ..")
+    }
+}
+print("is Empty says finally \(myStack.isEmpty())")
+
 
